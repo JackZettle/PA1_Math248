@@ -141,7 +141,7 @@ elif Sign == 'add': #setting if statement for addition
         if carry_bit == '1' or result_bits[0] == '1':
             print("!!Overflow has Occurred!!")
         else:
-            result_bits = result_bits.lstrip("0")
+            result_bits = result_bits
         return result_bits
 
     binary_add_display_result = binary_add_display(result)
