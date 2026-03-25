@@ -59,7 +59,6 @@ def recursive_bit_adder(a_bits, b_bits, index, carry):
 
     # If the Index (position) = 32 then we return the carry bit
     if index == 32:
-
         return carry
     
     # Compute a singular bits position using the carry from the previous position, and return a sum bit and a carry
@@ -73,7 +72,16 @@ def recursive_bit_adder(a_bits, b_bits, index, carry):
 result = recursive_bit_adder(bit1, bit2, 0, 0)
 
 # Call the Full 32 Bit Adder Result, Adding Error statement accounting for Overflow
-if len(result) == 32:
-    print("Error Overflow has Occurred")
+carry_bit = result[-1] # Last character in the bit
+result_bits = result[:-1] # 
+result_bits = result_bits[::-1] # Reverse the result 
+
+# Check for Overflow 
+# Overflow occurs if carry_bit is '1', meaning the result requires a 33rd bit
+# 
+if carry_bit == '1' or result_bits[0] == '1':
+    print("Overflow has Occurred.")
+    print(f"\nThe Binary Additive Result is {result_bits}")
 else:
-    print(f"The Sum of {integer1} and {integer2} in Binary is: {result}")
+    result_bits = result_bits.lstrip("0")
+    print(f"The Sum of {integer1} and {integer2} in Binary is: {result_bits}")
