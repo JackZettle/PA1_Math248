@@ -4,12 +4,12 @@ Int_2= int(input("Input smaller number value here: ")) #getting smaller int valu
 Sign = input("Do you wish to add or subtract these two numbers:") # getting if they want to add or subtract
 #-------------------------------------------------------------------------------------------------------------
 if Int_1 < Int_2:
-    raise ValueError("Input the larger number first")
+    raise ValueError("!!Error, the Larger Int was not entered first!!")
 #-------------------------------------------------------------------------------------------------------------
 if Int_1 > (2**31)-1: #Accounting for the error that the int inputted is larger than a int 32 integer
-    raise ValueError("Error, the input is larger than an int32 integer")
+    raise ValueError("!!Error, the input is larger than an int32 integer!!")
 if Int_2 > (2**31)-1: #Accounting for the error that the int inputted is larger than a int 32 integer
-    raise ValueError("Error, the input is larger than an int32 integer")
+    raise ValueError("!!Error, the input is larger than an int32 integer!!")
 #--------------------------------------------------------------------------------------------------------------
 def binary_converter(integer_1,integer_2):
     result_1 = []
