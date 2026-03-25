@@ -96,7 +96,9 @@ def binary_sub_display(result):
     carry_bit = result[-1] # Last character in the bit
     result_bits = result[:-1] # 
     result_bits = result_bits[::-1] # Reverse the result 
-    result_bits = result_bits.lstrip("0")
+
+    # Check for Overflow 
+    # Overflow occurs if carry_bit is '1', meaning the result requires a 33rd bit
     return result_bits
 
 binary_add_display_result = binary_sub_display(result)
