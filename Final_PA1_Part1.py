@@ -1,4 +1,4 @@
-10###############################################################################
+###############################################################################
 # Program: Programming_Assignment_1_Part1.py
 # Authors: Jack Zettlemoyer, Griffin Fee, Kai Behrens, Jacob Fitzmaurice
 # Date: 03/24/26
@@ -42,7 +42,7 @@ def half_adder(bit_a, bit_b):
     # meaning it can be constructed from OR, AND, and NOT gates.
     # XOR returns 1 when exactly one input is 1.
     sum_val = bit_a ^ bit_b
-    # Cout = A AND B — carry is 1 only when both inputs are 1
+    # Cout = A AND B — carry is 1 only when both inputs are 1.
     carry_val = bit_a & bit_b
     return (sum_val, carry_val)
 
@@ -88,20 +88,20 @@ def two_bit_adder_logic(a_bits, b_bits):
         s0        (int): Least significant bit of the sum (0 or 1).
     """
     # Convert each character in the binary string to a list of integers
-    a = [int(bit) for bit in a_bits]
-    b = [int(bit) for bit in b_bits]
-
-    # Reverse so index 0 = LSB (least significant bit first)
-    a.reverse()
-    b.reverse()
-
+    a = [int(bit) for bit in a_bits] #Ex: will look like a = [1, 1] if a=11 was the input
+    b = [int(bit) for bit in b_bits] 
+    
+    # Reverse so that the index 0 = LSB (least significant bit first)
+    a.reverse() ### directly modifies the list 'a'; list a will now have reverse order. 
+    b.reverse() 
+    
     # LSB addition: half adder adds the two least significant bits
-    s0, c0 = half_adder(a[0], b[0])
+    s0, c0 = half_adder(a[0], b[0]) ### assigns s0 and c0 as the outputs when the first element of the list a and b are inputs.
 
     # MSB addition: full adder adds the two most significant bits with the carry from the LSB
-    s1, c1 = full_adder(a[1], b[1], c0)
+    s1, c1 = full_adder(a[1], b[1], c0) ### assigns s1 and c1 as the outputs when the second element of the list a and b are inputs.
 
-    return (c1, s1, s0)
+    return (c1, s1, s0) 
 
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -111,16 +111,16 @@ num1_bits = input("Enter first 2-bit binary number (e.g. 00, 01, 10, 11): ")  # 
 num2_bits = input("Enter second 2-bit binary number (e.g. 00, 01, 10, 11): ")  # getting second 2-bit binary input
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------
-# Input validation: ensuring inputs are valid 2-bit binary strings
+# Input validation: ensuring inputs are valid 2-bit binary strings. returns respective error statement if inputs are invalid. 
 
-if len(num1_bits) != 2 or len(num2_bits) != 2:
+if len(num1_bits) != 2 or len(num2_bits) != 2: ### if the length of input1 or input2 does not equal 2 then raise error
     raise ValueError("!!Error, both inputs must be exactly 2 digits!!")
 
-for char in num1_bits:
+for char in num1_bits: ### for all the characters in input1, if they arent 0 and 1 then return an error.
     if char != '0' and char != '1':
         raise ValueError("!!Error, inputs must contain only 0s and 1s!!")
 
-for char in num2_bits:
+for char in num2_bits: ### for all the characters in input2, if they arent 0 and 1 then return an error.
     if char != '0' and char != '1':
         raise ValueError("!!Error, inputs must contain only 0s and 1s!!")
 
@@ -130,15 +130,15 @@ for char in num2_bits:
 carry_out, sum1, sum0 = two_bit_adder_logic(num1_bits, num2_bits)  # calling the two-bit adder with the user inputs
 
 # Converting inputs to base 10 for display
-a_dec = int(num1_bits[0]) * (2 ** 1) | int(num1_bits[1]) * (2 ** 0)  # base-10 value of input A
-b_dec = int(num2_bits[0]) * (2 ** 1) | int(num2_bits[1]) * (2 ** 0)  # base-10 value of input B
-sum_dec = carry_out * (2 ** 2) | sum1 * (2 ** 1) | sum0 * (2 ** 0)  # base-10 value of the sum
+a_dec = int(num1_bits[0]) * (2 ** 1) | int(num1_bits[1]) * (2 ** 0)  # asserts a_dec as the base-10 value of input A
+b_dec = int(num2_bits[0]) * (2 ** 1) | int(num2_bits[1]) * (2 ** 0)  # asserts b_dec as the base-10 value of input B
+sum_dec = carry_out * (2 ** 2) | sum1 * (2 ** 1) | sum0 * (2 ** 0)  # asserts sum_dec as the base-10 value of the sum
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------
-# Outputting the results to the user
+# Finally outputting the results for user to read. 
 
-print(f"The Sum of {num1_bits} and {num2_bits} in Binary is: {carry_out}{sum1}{sum0}")  # printing the binary result
-print(f"{carry_out}{sum1}{sum0} in Base 10 is Equal to {sum_dec}, which is equal to {a_dec} + {b_dec}")  # printing the base 10 result
-print(f"{num1_bits} in Base 10 is {a_dec}, {num2_bits} in Base 10 is {b_dec}")  # printing the converted input values
+print(f"The Sum of {num1_bits} and {num2_bits} in Binary is: {carry_out}{sum1}{sum0}")  # printing binary result
+print(f"{carry_out}{sum1}{sum0} in Base 10 is Equal to {sum_dec}, which is equal to {a_dec} + {b_dec}")  # printing base 10 result
+print(f"{num1_bits} in Base 10 is {a_dec}, {num2_bits} in Base 10 is {b_dec}")  # printing converted input values
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------
